@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import { useStore } from "./Providers";
 import { CartDrawer } from "./CartDrawer";
-import { PuneClock } from "./PuneClock";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Icon = ({ d }: { d: string }) => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>
@@ -39,7 +39,7 @@ export function Header() {
           <Icon d="M4 7h16M4 12h16M4 17h16" />
         </button>
         <Link href="/" className="flex items-center gap-3" aria-label="HOODSCRAFT home">
-          <Image src="/products/logo.png" alt="" width={44} height={39} className="h-9 w-auto invert" />
+          <Image src="/products/logo.png" alt="" width={44} height={39} className="logo-img h-9 w-auto" />
           <span className="font-display caps !text-sm lg:!text-base">HOODSCRAFT</span>
         </Link>
         <nav aria-label="Primary" className="hidden gap-8 lg:flex">
@@ -48,6 +48,7 @@ export function Header() {
           ))}
         </nav>
         <div className="-mr-2 flex items-center">
+          <ThemeToggle />
           <button className="grid h-12 w-12 place-items-center hover:text-volt" aria-label="Search" onClick={() => setSearch((s) => !s)}><Icon d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm9 16-4-4" /></button>
           <Link href="/account" className="hidden h-12 w-12 place-items-center hover:text-volt sm:grid" aria-label="Account"><Icon d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-8 8c0-4 3.6-6 8-6s8 2 8 6" /></Link>
           <Link href="/wishlist" className="relative hidden h-12 w-12 place-items-center hover:text-volt sm:grid" aria-label={`Wishlist (${hydrated ? wishlist.length : 0})`}>
