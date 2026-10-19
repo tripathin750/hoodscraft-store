@@ -97,7 +97,7 @@ export function prerender(): Plugin {
 
       const paths = allPaths();
       for (const p of paths) {
-        const file = p === "/" ? path.join(out, "index.html") : path.join(out, p, "index.html");
+        const file = p === "/" ? path.join(out, "index.html") : path.join(out, `${p}.html`);
         fs.mkdirSync(path.dirname(file), { recursive: true });
         fs.writeFileSync(file, render(p));
       }
