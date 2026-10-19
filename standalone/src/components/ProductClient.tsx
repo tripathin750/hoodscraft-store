@@ -59,7 +59,6 @@ export function ProductClient({ product }: { product: Product }) {
                 <ProductImage product={product} view={view} colourHex={hex} priority sizes="(min-width:1024px) 50vw, 100vw" />
               </div>
             </div>
-            <p className="mt-2 text-xs text-silver">Hover to zoom on desktop.</p>
           </div>
         </div>
 
@@ -113,7 +112,6 @@ export function ProductClient({ product }: { product: Product }) {
       </div>
 
       {related.length > 0 && <Strip title="You may also like" items={related} />}
-      {recentProducts.length > 0 && <Strip title="Recently viewed" items={recentProducts} />}
     </div>
   );
 }

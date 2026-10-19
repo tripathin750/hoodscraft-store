@@ -50,7 +50,6 @@ export function Header() {
         <div className="-mr-2 flex items-center">
           <ThemeToggle />
           <button className="grid h-12 w-12 place-items-center hover:text-volt" aria-label="Search" onClick={() => setSearch((s) => !s)}><Icon d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm9 16-4-4" /></button>
-          <Link href="/account" className="hidden h-12 w-12 place-items-center hover:text-volt sm:grid" aria-label="Account"><Icon d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-8 8c0-4 3.6-6 8-6s8 2 8 6" /></Link>
           <Link href="/wishlist" className="relative hidden h-12 w-12 place-items-center hover:text-volt sm:grid" aria-label={`Wishlist (${hydrated ? wishlist.length : 0})`}>
             <Icon d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" />
           </Link>
@@ -78,7 +77,6 @@ export function Header() {
             <Link key={n.label} href={n.href} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1} className="border-b border-line py-4 font-display text-3xl">{n.label}</Link>
           ))}
           <div className="mt-auto flex gap-6 text-sm text-silver">
-            <Link href="/account" onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>Account</Link>
             <Link href="/wishlist" onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>Wishlist</Link>
           </div>
         </nav>

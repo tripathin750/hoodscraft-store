@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
-import { SignupForm } from "./SignupForm";
 
 const col = "grid gap-2 text-sm text-silver [&_a:hover]:text-volt";
 export function Footer() {
@@ -11,9 +10,6 @@ export function Footer() {
         <div className="lg:col-span-2">
           <p className="font-display caps">HOODSCRAFT</p>
           <p className="mt-2 text-silver">{site.tagline}.</p>
-          <h2 className="mt-8 text-xl font-bold">Join the list</h2>
-          <p className="mb-3 text-sm text-silver">First access to drops. No spam.</p>
-          <SignupForm endpoint="/api/newsletter" fields={[{ name: "email", label: "Email address", type: "email" }]} cta="Subscribe" compact />
         </div>
         <nav aria-label="Shop" className={col}>
           <h2 className="mb-2 text-lg font-bold text-bone">Shop</h2>

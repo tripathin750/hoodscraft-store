@@ -6,7 +6,6 @@ import { site } from "@/lib/site";
 
 const latest = products.slice(0, 4);
 const featured = ["mentality", "hope", "scorpion", "shenlong"].map((s) => getProduct(s)!).filter(Boolean);
-const igTiles = ["p09", "p12", "p14", "p23", "p27", "p31"];
 
 export default function Home() {
   return (
@@ -57,17 +56,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-x mt-20" aria-labelledby="ig-h">
-        <div className="mb-5 flex items-end justify-between">
-          <h2 id="ig-h" className="text-3xl">On Instagram</h2>
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="label hover:text-bone">{site.instagramHandle} ↗</a>
-        </div>
-        <ul className="grid grid-cols-3 gap-2 md:grid-cols-6">
-          {igTiles.map((t, i) => (
-            <li key={t}><a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="View HOODSCRAFT on Instagram" className="relative block aspect-square overflow-hidden bg-char"><Image src={`/products/${t}.jpg`} alt={`HOODSCRAFT design ${i + 1}`} fill className="object-cover object-top" /></a></li>
-          ))}
-        </ul>
-      </section>
     </>
   );
 }

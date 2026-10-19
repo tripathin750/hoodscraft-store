@@ -10,7 +10,6 @@ import About from "./app/about/page";
 import Contact from "./app/contact/page";
 import FAQ from "./app/faq/page";
 import SizeGuide from "./app/size-guide/page";
-import Account from "./app/account/page";
 import Cart from "./app/cart/page";
 import Checkout from "./app/checkout/page";
 import Wishlist from "./app/wishlist/page";
@@ -36,7 +35,6 @@ function Route() {
     if (path === "/contact") return <Contact />;
     if (path === "/faq") return <FAQ />;
     if (path === "/size-guide") return <SizeGuide />;
-    if (path === "/account") return <Account />;
     if (path === "/cart") return <Cart />;
     if (path === "/checkout") return <Checkout />;
     if (path === "/wishlist") return <Wishlist />;
