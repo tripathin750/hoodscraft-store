@@ -114,7 +114,7 @@ export function ProductClient({ product }: { product: Product }) {
           <button onClick={() => toggleWish(product.slug)} aria-pressed={wished} className="label mt-4 min-h-11 hover:text-volt">{wished ? "♥ In wishlist" : "♡ Add to wishlist"}</button>
 
           <div className="mt-8 divide-y divide-line border-y border-line">
-            <Acc title="Specifications"><ul className="grid gap-1">{!product.fabric.startsWith("[") && <li>Fabric: {product.fabric}</li>}{product.gsm && <li>GSM: {product.gsm}</li>}{product.details.filter((d) => !d.startsWith("[")).map((d) => <li key={d}>{d}</li>)}</ul></Acc>
+            <Acc title="Specifications" open><div className="mb-4 flex flex-wrap gap-2">{product.gsm && <span className="rounded-full bg-bone px-3 py-1 text-xs font-medium uppercase tracking-[.1em] text-ink">{product.gsm}</span>}{product.category === "t-shirts" && <><span className="rounded-full border border-line px-3 py-1 text-xs uppercase tracking-[.1em] text-bone">Oversized fit</span><span className="rounded-full border border-line px-3 py-1 text-xs uppercase tracking-[.1em] text-bone">Unisex</span></>}</div><ul className="grid gap-2">{!product.fabric.startsWith("[") && <li>Fabric: {product.fabric}</li>}{product.details.filter((d) => !d.startsWith("[")).map((d) => <li key={d} className="flex gap-2"><span aria-hidden="true" className="text-bone">✓</span><span>{d}</span></li>)}</ul></Acc>
             <Acc title="Care instructions"><p>Machine wash cold, inside out, with similar colours. Do not bleach. Dry in shade and iron on low heat, avoiding the print. This keeps the graphics and fabric looking new.</p></Acc>
             <Acc title="Shipping & returns"><p>Delivery across India. We confirm the delivery charge and timeline on WhatsApp when you order. See the <Link className="underline" href="/policies/shipping">shipping</Link> and <Link className="underline" href="/policies/returns">returns</Link> policies.</p></Acc>
           </div>
@@ -132,8 +132,8 @@ export function ProductClient({ product }: { product: Product }) {
     </div>
   );
 }
-const Acc = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <details className="group py-4 text-sm text-silver"><summary className="flex min-h-8 cursor-pointer list-none items-center justify-between font-display text-lg font-bold uppercase tracking-wider text-bone">{title}<span className="transition group-open:rotate-45">+</span></summary><div className="pt-3">{children}</div></details>
+const Acc = ({ title, children, open }: { title: string; children: React.ReactNode; open?: boolean }) => (
+  <details open={open} className="group py-4 text-sm text-silver"><summary className="flex min-h-8 cursor-pointer list-none items-center justify-between font-display text-lg font-bold uppercase tracking-wider text-bone">{title}<span className="transition group-open:rotate-45">+</span></summary><div className="pt-3">{children}</div></details>
 );
 const Strip = ({ title, items }: { title: string; items: Product[] }) => (
   <section className="mt-24" aria-label={title}><h2 className="mb-6 text-2xl ">{title}</h2><div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">{items.map((p) => <ProductCard key={p.slug} product={p} />)}</div></section>

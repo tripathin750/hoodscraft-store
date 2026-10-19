@@ -247,7 +247,19 @@ const rawProducts: Product[] = [
 const HIGH = new Set(["scorpion", "mentality", "hope"]);
 export const products: Product[] = rawProducts.map((p) => p.category === "hoodies"
   ? { ...p, price: HOODIE_PRICE, compareAt: HOODIE_MRP }
-  : { ...p, price: HIGH.has(p.slug) ? TEE_PRICE_HIGH : TEE_PRICE, compareAt: TEE_MRP });
+  : {
+    ...p, price: HIGH.has(p.slug) ? TEE_PRICE_HIGH : TEE_PRICE, compareAt: TEE_MRP,
+    fabric: "Premium heavyweight fabric", gsm: "240 GSM",
+    details: [
+      ...p.details.filter((d) => /print/i.test(d)),
+      "240 GSM heavyweight fabric: dense, soft and structured, so it hangs well and doesn't feel thin",
+      "Premium-quality thread with neat, durable stitching built to last",
+      "Oversized drop-shoulder fit for a relaxed, street-ready look",
+      "Clean crew neckline and a roomy body",
+      "Crisp, vibrant print that makes the design stand out",
+      "Unisex, sizes S to XXL",
+    ],
+  });
 
 export const collections = [
   { handle: "hoodies", title: "Hoodies", blurb: "400 GSM Lightning hoodies." },
