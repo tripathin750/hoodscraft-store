@@ -33,11 +33,10 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ee203b292666285b1f8c2547a9240742
     defaults: { run: { working-directory: standalone } }
     steps:
+      - uses: actions/checkout@v4
       - name: Skip if token not set
         if: env.CLOUDFLARE_API_TOKEN == ''
         run: echo "CLOUDFLARE_API_TOKEN secret not set; skipping Cloudflare deploy."
-      - uses: actions/checkout@v4
-        if: env.CLOUDFLARE_API_TOKEN != ''
       - uses: actions/setup-node@v4
         if: env.CLOUDFLARE_API_TOKEN != ''
         with: { node-version: 22 }
