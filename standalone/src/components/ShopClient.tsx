@@ -53,8 +53,8 @@ export function ShopClient() {
       <fieldset><legend className="label mb-3">Colour</legend>
         <div className="flex flex-wrap gap-2">{allColours.map((c) => <button key={c.name} aria-pressed={colours.includes(c.name)} className={`${chip(colours.includes(c.name))} flex items-center gap-2`} onClick={() => toggle("colour", colours, c.name)}><span className="h-3 w-3 rounded-full border border-silver/50" style={{ background: c.hex }} />{c.name}</button>)}</div></fieldset>
       <div><label htmlFor="max" className="label mb-3 block">Max price {maxPrice ? `₹${maxPrice}` : "(any)"}</label>
-        <input id="max" type="range" min={priceRange.min} max={priceRange.max} step={100} value={maxPrice || priceRange.max} onChange={(e) => set("max", Number(e.target.value) >= priceRange.max ? null : e.target.value)} className="w-full accent-[#ff5a14]" /></div>
-      <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" checked={onlyStock} onChange={(e) => set("stock", e.target.checked ? "1" : null)} className="h-5 w-5 accent-[#ff5a14]" />In stock only</label>
+        <input id="max" type="range" min={priceRange.min} max={priceRange.max} step={100} value={maxPrice || priceRange.max} onChange={(e) => set("max", Number(e.target.value) >= priceRange.max ? null : e.target.value)} className="w-full accent-[#bcdcff]" /></div>
+      <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" checked={onlyStock} onChange={(e) => set("stock", e.target.checked ? "1" : null)} className="h-5 w-5 accent-[#bcdcff]" />In stock only</label>
       <button className="label self-start underline hover:text-volt" onClick={() => router.replace("/shop")}>Clear all</button>
     </div>
   );

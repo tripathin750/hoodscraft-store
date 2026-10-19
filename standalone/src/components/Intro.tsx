@@ -16,7 +16,7 @@ export function Intro() {
   return (
     <div onClick={() => setPhase("gone")} role="presentation" className={`fixed inset-0 z-[200] grid cursor-pointer place-content-center justify-items-center gap-5 bg-black transition-opacity duration-500 ${phase === "fade" ? "opacity-0" : "opacity-100"}`}>
       <img src={logo} alt="" className="intro-logo h-20 w-auto" />
-      <p className="font-display text-xl uppercase tracking-[.5em] text-bone"><Scramble text="HOODSCRAFT" hover={false} /></p>
+      <p className="font-display caps text-bone"><Scramble text="HOODSCRAFT" hover={false} /></p>
       <span className="intro-bar h-px w-40 bg-volt" />
     </div>
   );

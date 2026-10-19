@@ -31,7 +31,7 @@ export function Header() {
   return (
     <>
     <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur">
-      <div className="overflow-hidden bg-volt text-[11px] uppercase tracking-[.2em] text-ink">
+      <div className="overflow-hidden border-b border-line bg-char text-[11px] uppercase tracking-[.2em] text-silver">
         <div className="container-x flex items-center justify-between gap-4 py-2"><p className="flex-1 text-center sm:text-left">{site.announcement}</p><PuneClock /></div>
       </div>
       <div className="container-x flex h-16 items-center justify-between gap-4">
@@ -40,11 +40,11 @@ export function Header() {
         </button>
         <Link href="/" className="flex items-center gap-3" aria-label="HOODSCRAFT home">
           <Image src="/products/logo.png" alt="" width={44} height={39} className="h-9 w-auto" />
-          <span className="font-display text-xl uppercase tracking-[.14em] lg:text-2xl">HOODSCRAFT</span>
+          <span className="font-display caps !text-sm lg:!text-base">HOODSCRAFT</span>
         </Link>
         <nav aria-label="Primary" className="hidden gap-8 lg:flex">
           {site.nav.map((n) => (
-            <Link key={n.label} href={n.href} className="font-display text-[15px] font-semibold uppercase tracking-[.16em] text-bone/80 transition hover:text-volt">{n.label}</Link>
+            <Link key={n.label} href={n.href} className="text-[11px] font-medium uppercase tracking-[.22em] text-bone/70 transition hover:text-volt">{n.label}</Link>
           ))}
         </nav>
         <div className="-mr-2 flex items-center">
@@ -74,7 +74,7 @@ export function Header() {
         <nav aria-label="Mobile" className={`absolute inset-y-0 left-0 flex w-[84%] max-w-sm flex-col bg-ink p-6 transition-transform duration-300 ease-out ${menu ? "translate-x-0" : "-translate-x-full"}`}>
           <button className="-ml-2 mb-6 grid h-12 w-12 place-items-center" aria-label="Close menu" onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}><Icon d="M6 6l12 12M18 6 6 18" /></button>
           {site.nav.map((n) => (
-            <Link key={n.label} href={n.href} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1} className="border-b border-line py-4 font-display text-xl font-bold uppercase tracking-wider">{n.label}</Link>
+            <Link key={n.label} href={n.href} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1} className="border-b border-line py-4 font-display text-3xl">{n.label}</Link>
           ))}
           <div className="mt-auto flex gap-6 text-sm text-silver">
             <Link href="/account" onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>Account</Link>

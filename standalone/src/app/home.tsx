@@ -15,8 +15,8 @@ const LINES = ["Crafted", "for the", "fearless"];
 
 function Headline({ fill = false }: { fill?: boolean }) {
   return (
-    <span className={`block font-display text-[clamp(2.6rem,7.4vw,6.6rem)] uppercase leading-[.92] ${fill ? "text-volt glow" : "outline-text"}`}>
-      {LINES.map((l) => <span key={l} className="block">{l}</span>)}
+    <span className={`block font-display text-[clamp(3.4rem,9vw,8rem)] leading-[.88] ${fill ? "text-volt glow" : "outline-text"}`}>
+      {LINES.map((l) => <span key={l} className={`block ${l === "fearless" ? "italic" : ""}`}>{l}</span>)}
     </span>
   );
 }
@@ -50,8 +50,8 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="border-b border-line bg-volt py-2.5 text-ink">
-        <Marquee items={["Hoodscraft ✦ Elite Streetwear", "Crafted for the fearless ✦", "Lightning Hoodie · 400 GSM ✦", "Pune, India ✦"]} className="font-display text-base uppercase tracking-[.16em]" speed={55} />
+      <div className="border-b border-line bg-char py-3 text-bone/80">
+        <Marquee items={["Hoodscraft ✦ Elite Streetwear", "Crafted for the fearless ✦", "Lightning Hoodie · 400 GSM ✦", "Pune, India ✦"]} className="font-display text-xl italic" speed={55} />
       </div>
 
       <Row title="Latest drops" href="/shop" items={latest} />

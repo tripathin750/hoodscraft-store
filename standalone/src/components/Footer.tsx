@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-line bg-char">
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <p className="font-display text-xl  tracking-[.18em]">HOODSCRAFT</p>
+          <p className="font-display caps">HOODSCRAFT</p>
           <p className="mt-2 text-silver">{site.tagline}.</p>
           <h2 className="mt-8 text-xl font-bold">Join the list</h2>
           <p className="mb-3 text-sm text-silver">First access to drops. No spam.</p>

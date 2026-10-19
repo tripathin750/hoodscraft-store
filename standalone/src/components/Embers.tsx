@@ -24,7 +24,7 @@ export function Embers({ count = 70 }: { count?: number }) {
         p.ox *= 0.96; p.oy *= 0.96;
         const a = 0.25 + 0.55 * Math.abs(Math.sin(t / 700 + p.ph));
         const g = ctx.createRadialGradient(x, y, 0, x, y, p.r * 5);
-        g.addColorStop(0, `rgba(255,140,60,${a})`); g.addColorStop(1, "rgba(255,90,20,0)");
+        g.addColorStop(0, `rgba(214,232,255,${a})`); g.addColorStop(1, "rgba(188,220,255,0)");
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, p.r * 5, 0, 6.283); ctx.fill();
       }
     };

@@ -25,7 +25,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           {sold && <span className="bg-bone px-2 py-1 text-ink">Sold out</span>}
           {!sold && product.compareAt && <span className="bg-crimson px-2 py-1 text-white">Sale</span>}
           {!sold && product.badge && <span className="bg-volt px-2 py-1 text-ink">{product.badge}</span>}
-          {!sold && product.isNew && <span className="bg-volt px-2 py-1 text-white">New</span>}
+          {!sold && product.isNew && <span className="bg-volt px-2 py-1 text-ink">New</span>}
         </div>
         <button onClick={() => toggleWish(product.slug)} aria-pressed={wished} aria-label={wished ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`} className="absolute right-2 top-2 grid h-11 w-11 place-items-center text-bone transition hover:text-volt">
           <svg width="20" height="20" viewBox="0 0 24 24" fill={wished ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.6"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" /></svg>

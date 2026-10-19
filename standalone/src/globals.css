@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
-@font-face { font-family: "Anton"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/anton.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/instrument-serif.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/instrument-serif-italic.woff2") format("woff2"); }
 @font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("/fonts/space-grotesk.woff2") format("woff2"); }
 
+/* Storm palette: cold monochrome pulled from the lightning hoodies. Accent = lightning ice. */
 :root {
-  --ink: #0a0a0a; --char: #111111; --panel: #171717; --line: #2b2b2b;
-  --bone: #f5f0e6; --silver: #a8a39a; --volt: #ff5a14; --crimson: #ffb703;
+  --ink: #07080a; --char: #0e1013; --panel: #14171b; --line: #24282e;
+  --bone: #ecebe6; --silver: #959aa3; --volt: #bcdcff; --crimson: #ff6b6b;
 }
 
 @theme inline {
@@ -17,24 +19,28 @@
   --color-silver: var(--silver);
   --color-volt: var(--volt);
   --color-crimson: var(--crimson);
-  --font-display: "Anton";
+  --font-display: "Instrument Serif";
   --font-sans: "Space Grotesk";
 }
 
 html { color-scheme: dark; scroll-behavior: smooth; overflow-x: clip; }
 body { background: var(--ink); color: var(--bone); font-family: "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
-h1, h2, h3, .font-display { font-family: "Anton", system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 400; }
-::selection { background: var(--volt); color: #fff; }
+h1, h2, h3, .font-display { font-family: "Instrument Serif", Georgia, serif; text-transform: none; letter-spacing: -0.015em; font-weight: 400; }
+h1, h2 { line-height: 1.02; }
+h1, h2, h3 { font-size-adjust: none; }
+.font-display.caps { text-transform: uppercase; letter-spacing: .38em; font-family: "Space Grotesk", sans-serif; font-size: 14px; }
+.italic-serif, h2 em, h1 em { font-style: italic; }
+::selection { background: var(--volt); color: #07080a; }
 :focus-visible { outline: 2px solid var(--volt); outline-offset: 2px; }
 
 .container-x { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 16px; }
 @media (min-width: 768px) { .container-x { padding-inline: 32px; } }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 28px; font-family: "Anton"; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; transition: background .2s, color .2s, border-color .2s, transform .15s; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 28px; font-family: "Space Grotesk", sans-serif; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; font-size: 12px; border-radius: 999px; transition: background .2s, color .2s, border-color .2s, transform .15s; cursor: pointer; }
 .btn:active { transform: translateY(1px); }
-.btn-primary { background: var(--volt); color: var(--ink); }
-.btn-primary:hover { background: var(--volt); color: var(--ink); box-shadow: 4px 4px 0 var(--bone); transform: translate(-2px,-2px); }
-.btn-ghost { border: 2px solid var(--bone); color: var(--bone); }
+.btn-primary { background: var(--bone); color: var(--ink); }
+.btn-primary:hover { background: var(--volt); color: var(--ink); box-shadow: 0 0 34px rgba(188,220,255,.45); }
+.btn-ghost { border: 1px solid rgba(236,235,230,.5); color: var(--bone); }
 .btn-ghost:hover { border-color: var(--volt); color: var(--volt); }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .input { width: 100%; min-height: 48px; background: var(--char); border: 1px solid var(--line); padding: 0 14px; color: var(--bone); }
@@ -47,15 +53,15 @@ textarea.input { padding: 12px 14px; min-height: 120px; }
 .marquee { animation: marquee 30s linear infinite; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .grain { background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size: 3px 3px; }
-.smoke { background: radial-gradient(55% 45% at 85% 90%, rgba(255,90,20,.28), transparent 70%); }
+.smoke { background: radial-gradient(55% 45% at 85% 90%, rgba(188,220,255,.28), transparent 70%); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
 }
 
-.stripes { background: repeating-linear-gradient(-45deg, var(--volt) 0 14px, var(--ink) 14px 28px); }
-.outline-text { -webkit-text-stroke: 1.5px rgba(245,240,230,.6); color: transparent; }
+.stripes { background: linear-gradient(90deg, transparent, var(--volt), transparent); height: 1px !important; }
+.outline-text { -webkit-text-stroke: 1px rgba(236,235,230,.5); color: transparent; }
 
 /* ---------- mystery / motion layer ---------- */
 [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
@@ -64,12 +70,12 @@ textarea.input { padding: 12px 14px; min-height: 120px; }
 .kw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-right: .28em; }
 .kw > span { display: inline-block; transform: translateY(115%); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
 [data-reveal="words"].in .kw > span { transform: none; }
-.glow { text-shadow: 0 0 26px rgba(255,90,20,.6); }
+.glow { text-shadow: 0 0 26px rgba(188,220,255,.6); }
 .flicker { animation: flicker 6s infinite; }
 @keyframes flicker { 0%,18%,22%,62%,64%,100% { opacity: 1; } 20%,63% { opacity: .35; } 21% { opacity: .8; } }
 .spot-fill { -webkit-mask-image: radial-gradient(circle 190px at var(--sx,-999px) var(--sy,-999px), #000 0, #000 35%, transparent 100%); mask-image: radial-gradient(circle 190px at var(--sx,-999px) var(--sy,-999px), #000 0, #000 35%, transparent 100%); }
 .fog { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; animation: drift 20s ease-in-out infinite alternate; }
-.fog-a { left: -12%; bottom: -25%; width: 60vw; height: 40vw; background: radial-gradient(closest-side, rgba(255,90,20,.28), transparent); }
+.fog-a { left: -12%; bottom: -25%; width: 60vw; height: 40vw; background: radial-gradient(closest-side, rgba(188,220,255,.28), transparent); }
 .fog-b { right: -8%; top: -10%; width: 50vw; height: 35vw; background: radial-gradient(closest-side, rgba(255,255,255,.08), transparent); animation-duration: 26s; animation-direction: alternate-reverse; }
 @keyframes drift { to { transform: translate3d(8vw, -4vw, 0) scale(1.15); } }
 .flash { position: absolute; inset: 0; background: #fff; mix-blend-mode: overlay; opacity: 0; pointer-events: none; animation: flash 9s infinite; }
@@ -80,8 +86,8 @@ textarea.input { padding: 12px 14px; min-height: 120px; }
 .vignette { position: fixed; inset: 0; pointer-events: none; z-index: 149; background: radial-gradient(120% 95% at 50% 40%, transparent 55%, rgba(0,0,0,.6)); }
 .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--volt); transform-origin: 0 50%; transform: scaleX(var(--progress, 0)); z-index: 250; pointer-events: none; }
 .cursor-ring, .cursor-dot { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 300; border-radius: 50%; }
-.cursor-ring { width: 36px; height: 36px; margin: -18px 0 0 -18px; border: 1px solid rgba(255,90,20,.8); transition: width .25s, height .25s, margin .25s, background .25s; }
-.cursor-ring.hot { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(255,90,20,.14); }
+.cursor-ring { width: 36px; height: 36px; margin: -18px 0 0 -18px; border: 1px solid rgba(188,220,255,.8); transition: width .25s, height .25s, margin .25s, background .25s; }
+.cursor-ring.hot { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(188,220,255,.14); }
 .cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--volt); }
 @media (pointer: coarse) { .cursor-ring, .cursor-dot { display: none; } }
 .intro-logo { animation: introGlitch 1.2s both; }
