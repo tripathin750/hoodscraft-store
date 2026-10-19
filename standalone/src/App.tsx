@@ -3,6 +3,7 @@ import { Providers } from "@/components/Providers";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { parse, useHash } from "./shims/navigation";
+import { metaFor } from "./lib/seo";
 import Home from "./app/home";
 import Shop from "./app/shop/page";
 import Collections from "./app/collections/page";
@@ -47,6 +48,11 @@ function Route() {
 export default function App() {
   const h = useHash();
   useEffect(() => { window.scrollTo(0, 0); }, [parse().path, h && 0]);
+  useEffect(() => {
+    const m = metaFor(parse().path);
+    document.title = m.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", m.description);
+  }, [parse().path]);
   return (
     <Providers>
       <FX /><Intro />
