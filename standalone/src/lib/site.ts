@@ -12,8 +12,8 @@ export const site = {
   announcement: "Limited drop · Lightning Hoodies · 400 GSM · 30 pcs only",
   // PLACEHOLDER business details — not confirmed by the brand owner
   contact: {
-    email: "",
-    phone: "7030189953 · 7798842378",
+    email: "hoodscraft.work@gmail.com",
+    phone: "+91 70301 89953",
     address: "Pune, Maharashtra",
     hours: "",
   },

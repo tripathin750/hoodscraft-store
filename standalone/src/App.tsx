@@ -52,7 +52,7 @@ export default function App() {
   return (
     <Providers>
       <FX /><Intro />
-      <div className="grain-fx" aria-hidden="true" /><div className="vignette" aria-hidden="true" />
+      
       <Header />
       <main id="main"><Suspense fallback={<div className="min-h-[60svh]" aria-busy="true" />}><Route /></Suspense></main>
       <Footer />

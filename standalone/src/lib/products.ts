@@ -23,10 +23,13 @@ const TEE_SIZES = ["S", "M", "L", "XL", "XXL"];
 const allStock = (sizes: string[], n = 10) => Object.fromEntries(sizes.map((s) => [s, n]));
 const C = { White: { name: "White", hex: "#f1eee6" }, Black: { name: "Black", hex: "#0b0b0b" }, Sand: { name: "Sand", hex: "#d9c4a0" }, Charcoal: { name: "Charcoal", hex: "#3a3f48" } };
 const img = (n: string) => `/products/${n}.jpg`;
-const TEE_PRICE = 999; // PLACEHOLDER
-const HOODIE_PRICE = 2499; // PLACEHOLDER
+const TEE_PRICE = 699;
+const TEE_PRICE_HIGH = 799; // scorpion, mentality, hope
+const TEE_MRP = 999;
+const HOODIE_MRP = 2700;
+const HOODIE_PRICE = 1799;
 
-export const products: Product[] = [
+const rawProducts: Product[] = [
   {
     slug: "black-lightning-hoodie", name: "Black Lightning Hoodie", category: "hoodies", collection: "hoodies",
     price: HOODIE_PRICE, colours: [C.Black], sizes: HOODIE_SIZES, stock: allStock(HOODIE_SIZES),
@@ -240,6 +243,11 @@ export const products: Product[] = [
     isNew: false, popularity: 34, addedAt: "2025-01-01", images: [img('p31')], confirmedProduct: true,
   },
 ];
+
+const HIGH = new Set(["scorpion", "mentality", "hope"]);
+export const products: Product[] = rawProducts.map((p) => p.category === "hoodies"
+  ? { ...p, price: HOODIE_PRICE, compareAt: HOODIE_MRP }
+  : { ...p, price: HIGH.has(p.slug) ? TEE_PRICE_HIGH : TEE_PRICE, compareAt: TEE_MRP });
 
 export const collections = [
   { handle: "hoodies", title: "Hoodies", blurb: "400 GSM Lightning hoodies." },

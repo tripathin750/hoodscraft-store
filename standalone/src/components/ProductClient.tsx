@@ -105,9 +105,9 @@ export function ProductClient({ product }: { product: Product }) {
           <button onClick={() => toggleWish(product.slug)} aria-pressed={wished} className="label mt-4 min-h-11 hover:text-volt">{wished ? "♥ In wishlist" : "♡ Add to wishlist"}</button>
 
           <div className="mt-8 divide-y divide-line border-y border-line">
-            <Acc title="Specifications"><ul className="grid gap-1"><li>Fabric: {product.fabric}</li>{product.gsm && <li>GSM: {product.gsm}</li>}{product.details.map((d) => <li key={d}>{d}</li>)}</ul></Acc>
-            <Acc title="Care instructions"><p>[Care instructions to be confirmed by HOODSCRAFT for this fabric.]</p></Acc>
-            <Acc title="Shipping & returns"><p>[Shipping times, costs and returns window to be confirmed.] See the <Link className="underline" href="/policies/shipping">shipping</Link> and <Link className="underline" href="/policies/returns">returns</Link> policies.</p></Acc>
+            <Acc title="Specifications"><ul className="grid gap-1">{!product.fabric.startsWith("[") && <li>Fabric: {product.fabric}</li>}{product.gsm && <li>GSM: {product.gsm}</li>}{product.details.filter((d) => !d.startsWith("[")).map((d) => <li key={d}>{d}</li>)}</ul></Acc>
+            <Acc title="Care instructions"><p>Machine wash cold, inside out, with similar colours. Do not bleach. Dry in shade and iron on low heat, avoiding the print. This keeps the graphics and fabric looking new.</p></Acc>
+            <Acc title="Shipping & returns"><p>Delivery across India. We confirm the delivery charge and timeline on WhatsApp when you order. See the <Link className="underline" href="/policies/shipping">shipping</Link> and <Link className="underline" href="/policies/returns">returns</Link> policies.</p></Acc>
           </div>
         </div>
       </div>

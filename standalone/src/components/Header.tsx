@@ -32,14 +32,14 @@ export function Header() {
     <>
     <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur">
       <div className="overflow-hidden border-b border-line bg-char text-[11px] uppercase tracking-[.2em] text-silver">
-        <div className="container-x flex items-center justify-between gap-4 py-2"><p className="flex-1 text-center sm:text-left">{site.announcement}</p><PuneClock /></div>
+        <div className="container-x py-2"><p className="text-center">{site.announcement}</p></div>
       </div>
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <button className="-ml-2 grid h-12 w-12 place-items-center lg:hidden" aria-label="Open menu" aria-expanded={menu} onClick={() => setMenu(true)}>
           <Icon d="M4 7h16M4 12h16M4 17h16" />
         </button>
         <Link href="/" className="flex items-center gap-3" aria-label="HOODSCRAFT home">
-          <Image src="/products/logo.png" alt="" width={44} height={39} className="h-9 w-auto" />
+          <Image src="/products/logo.png" alt="" width={44} height={39} className="h-9 w-auto invert" />
           <span className="font-display caps !text-sm lg:!text-base">HOODSCRAFT</span>
         </Link>
         <nav aria-label="Primary" className="hidden gap-8 lg:flex">
