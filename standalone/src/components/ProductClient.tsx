@@ -69,7 +69,6 @@ export function ProductClient({ product }: { product: Product }) {
             <span className="font-bold">{money(product.price)}</span>
             {product.compareAt && <s className="text-silver">{money(product.compareAt)}</s>}
           </p>
-          <p className="mt-1 text-xs text-silver">Placeholder price — confirm before launch.</p>
           {product.badge && <p className="mt-3 inline-block bg-volt px-3 py-1 font-display text-lg uppercase text-ink">{product.badge}</p>}
           <p className="mt-5 text-silver">{product.description}</p>
 

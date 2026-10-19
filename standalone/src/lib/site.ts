@@ -6,14 +6,16 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   instagram: "https://www.instagram.com/hoodscraft/",
   instagramHandle: "@hoodscraft",
+  // WhatsApp number, international format, digits only (91 = India). Orders and enquiries are sent here.
+  whatsapp: "917030189953",
   // PLACEHOLDER: replace with the real announcement
   announcement: "Limited drop · Lightning Hoodies · 400 GSM · 30 pcs only",
   // PLACEHOLDER business details — not confirmed by the brand owner
   contact: {
-    email: "hello@your-domain.example",
+    email: "",
     phone: "7030189953 · 7798842378",
     address: "Pune, Maharashtra",
-    hours: "[Support hours — to be confirmed]",
+    hours: "",
   },
   nav: [
     { label: "Home", href: "/" },
