@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { products, allColours, allSizes, inStock, priceRange } from "@/lib/products";
 import { ProductCard } from "./ProductCard";
 
-const PAGE = 6;
+const PAGE = 12;
 const csv = (v: string | null) => (v ? v.split(",").filter(Boolean) : []);
 
 export function ShopClient() {

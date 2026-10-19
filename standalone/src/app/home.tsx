@@ -34,7 +34,7 @@ export default function Home() {
         <ul className="grid gap-3 md:grid-cols-3">
           {collections.map((c) => (
             <li key={c.handle}>
-              <Link href={`/collections#${c.handle}`} className="flex h-full flex-col justify-between gap-8 bg-panel p-6 transition hover:bg-char">
+              <Link href={`/collections?c=${c.handle}`} className="flex h-full flex-col justify-between gap-8 bg-panel p-6 transition hover:bg-char">
                 <span className="text-2xl">{c.title}</span>
                 <span className="text-sm text-silver">{c.blurb} →</span>
               </Link>
