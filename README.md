@@ -30,7 +30,7 @@ HOODSCRAFT is a Pune-based streetwear brand (oversized hoodies and graphic tees)
 ---
 
 ## What the site does
-- Shows **32 products**: 2 Lightning hoodies and 30 graphic tees, each with price, MRP (crossed out), discount badge, sizes, colours, photos and specifications.
+- Shows **30 products**: 2 Lightning hoodies and 28 graphic tees, each with price, MRP (crossed out), discount badge, sizes, colours, photos and specifications.
 - Search, category filters, sorting and a "load more" shop grid.
 - Cart (slide-out drawer and full page), wishlist, and a checkout that **opens WhatsApp with the whole order pre-written** (items, sizes, quantities, total, name, phone, address). No payment is taken on the site, so no card data is ever handled.
 - Contact form and size-help button that also open WhatsApp.
