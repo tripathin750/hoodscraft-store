@@ -17,8 +17,6 @@ import Wishlist from "./app/wishlist/page";
 import Policy from "./app/policies";
 import Product from "./app/product";
 import Link from "next/link";
-import { FX } from "@/components/FX";
-import { Intro } from "@/components/Intro";
 
 function NotFound() {
   return (<div className="container-x grid place-items-center gap-5 py-32 text-center"><p className="label text-volt">Error 404</p><h1 className="text-7xl font-extrabold">Page not found</h1><div className="flex gap-3"><Link href="/" className="btn btn-primary">Home</Link><Link href="/shop" className="btn btn-ghost">Shop all</Link></div></div>);
@@ -55,7 +53,6 @@ export default function App() {
   }, [parse().path]);
   return (
     <Providers>
-      <FX /><Intro />
       
       <Header />
       <main id="main" key={parse().path} className="page-in"><Suspense fallback={<div className="min-h-[60svh]" aria-busy="true" />}><Route /></Suspense></main>

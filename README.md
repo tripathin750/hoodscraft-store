@@ -5,7 +5,7 @@ Repository: https://github.com/tripathin750/hoodscraft-store
 
 HOODSCRAFT is a Pune-based streetwear brand (oversized hoodies and graphic tees). This repository is its online store. It is a fast, static website that costs nothing to run: customers browse products, build a cart, and **send their order to the brand on WhatsApp**, where the brand confirms stock, delivery charge and takes UPI payment.
 
-> **Where the real website lives:** everything that is deployed is in the [`standalone/`](standalone) folder. The files in the repository root (`app/`, `components/`, `lib/`, `package.json`, `docs/`, the two `HOODSCRAFT-store*.html` files) are older experiments and are **not used** by the live site. See [Legacy files](#legacy-files-in-the-repo-root).
+> The whole website lives in the [`standalone/`](standalone) folder. Earlier experiments (a Next.js version and single-file builds) were removed from the repo; they remain in git history if ever needed.
 
 ---
 
@@ -24,8 +24,7 @@ HOODSCRAFT is a Pune-based streetwear brand (oversized hoodies and graphic tees)
 12. [Everyday edits](#everyday-edits)
 13. [Business details and policies](#business-details-and-policies)
 14. [Known limits](#known-limits)
-15. [Legacy files in the repo root](#legacy-files-in-the-repo-root)
-16. [Accounts and secrets](#accounts-and-secrets)
+15. [Accounts and secrets](#accounts-and-secrets)
 
 ---
 
@@ -94,7 +93,7 @@ hoodscraft-store/
 │   ├── vite.config.ts           Vite config, Next-import aliases, prerender plugin
 │   ├── prerender.ts             Build-time SEO: per-page HTML, sitemap, robots, 404
 │   ├── wrangler.jsonc           Cloudflare Worker config (optional second host)
-│   ├── postcss.config.cjs       Empty PostCSS config (isolates this build from the repo root)
+│   ├── postcss.config.cjs       Empty PostCSS config (Tailwind runs through its Vite plugin instead)
 │   ├── tsconfig.json
 │   ├── package.json
 │   ├── public/                  Copied as-is to the site root
@@ -118,7 +117,7 @@ hoodscraft-store/
 │       ├── shims/               Replacements for next/link, next/image, next/navigation
 │       └── assets/              Product photos (see Images)
 ├── .github/workflows/deploy.yml Build + deploy to Netlify on every push
-└── (root files)                 Legacy, unused (see below)
+└── README.md
 ```
 ★ = the two files you edit most.
 
@@ -215,14 +214,6 @@ Contact details and prices are real. The **policy pages, FAQ answers, care instr
 - **No customer accounts** (not needed for WhatsApp ordering).
 - The two hoodie photos are lower resolution than the tee photos.
 - Product `fabric` text for the hoodies and the exact thread/stitching claims should be confirmed by the brand.
-
-## Legacy files in the repo root
-These came from earlier attempts and are **not part of the live site**:
-- `app/`, `components/`, `lib/`, `public/`, `package.json`, `next.config.ts`, `postcss.config.mjs`, `eslint.config.mjs`: an earlier Next.js 16 version of the store.
-- `docs/index.html`, `HOODSCRAFT-store.html`, `HOODSCRAFT-store-orange.html`: earlier single-file builds.
-- `standalone/src/components/{Embers,FX,Intro,Kinetic,Marquee,PuneClock,Scramble,Bolt}.tsx`: effect components from the first design, now stubbed or unused after the site was made calmer.
-
-They can be deleted safely when you want a cleaner repository.
 
 ## Accounts and secrets
 - **GitHub repository secrets** (Settings → Secrets and variables → Actions): `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` (used by the deploy workflow), and `CLOUDFLARE_API_TOKEN` (left over from the Cloudflare attempt; can be deleted).
