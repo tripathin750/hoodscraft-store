@@ -44,3 +44,22 @@ jobs:
         run: npm install --no-audit --no-fund && npm run build
       - if: env.CLOUDFLARE_API_TOKEN != ''
         run: npx --yes wrangler@4 deploy
+
+  netlify:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    defaults: { run: { working-directory: standalone } }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if token not set
+        if: env.NETLIFY_AUTH_TOKEN == ''
+        run: echo "NETLIFY_AUTH_TOKEN secret not set; skipping Netlify deploy."
+      - uses: actions/setup-node@v4
+        if: env.NETLIFY_AUTH_TOKEN != ''
+        with: { node-version: 22 }
+      - if: env.NETLIFY_AUTH_TOKEN != ''
+        run: npm install --no-audit --no-fund && npm run build
+      - if: env.NETLIFY_AUTH_TOKEN != ''
+        run: npx --yes netlify-cli@latest deploy --prod --dir=dist --no-build
