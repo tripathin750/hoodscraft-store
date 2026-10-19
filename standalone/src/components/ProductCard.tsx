@@ -21,7 +21,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
         <Link href={`/products/${product.slug}`} aria-label={product.name} className="absolute inset-0 block transition-transform duration-700 ease-out group-hover:scale-[1.04]">
           <ProductImage product={product} colourHex={colour.hex} priority={priority} />
         </Link>
-        <div className="absolute left-3 top-3 flex flex-col gap-1 text-[11px] font-bold uppercase tracking-[.14em]">
+        <div className="absolute left-3 top-3 flex max-w-[calc(100%-3.25rem)] flex-col items-start gap-1 text-[9px] font-bold uppercase tracking-[.1em] sm:text-[11px] sm:tracking-[.14em]">
           {sold && <span className="bg-bone px-2 py-1 text-ink">Sold out</span>}
           {!sold && product.compareAt && <span className="bg-crimson px-2 py-1 text-white">Sale</span>}
           {!sold && product.badge && <span className="bg-volt px-2 py-1 text-ink">{product.badge}</span>}
