@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 import { waUrl } from "@/lib/whatsapp";
 
@@ -33,11 +34,11 @@ export default function About() {
       </div>
 
       <div className="mt-20 grid gap-3 md:grid-cols-3">
-        {pillars.map(([t, d]) => (
-          <div key={t} className="bg-panel p-6">
+        {pillars.map(([t, d], i) => (
+          <Reveal key={t} delay={i * 100}><div className="h-full bg-panel p-6">
             <h3 className="text-xl text-bone">{t}</h3>
             <p className="mt-3 text-sm text-silver">{d}</p>
-          </div>
+          </div></Reveal>
         ))}
       </div>
 

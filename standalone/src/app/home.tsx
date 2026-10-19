@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { products, collections, getProduct } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
+import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 
 const latest = products.slice(0, 4);
@@ -13,16 +14,16 @@ export default function Home() {
       {/* HERO */}
       <section className="grid bg-black text-white lg:grid-cols-2">
         <div className="relative order-2 flex flex-col justify-center gap-6 px-4 py-14 md:px-10 lg:order-1 lg:min-h-[70svh]">
-          <p className="label !text-white/60">{site.tagline}</p>
-          <h1 className="text-[clamp(2.6rem,6vw,5.5rem)] font-medium leading-[.98]">Crafted for the fearless.</h1>
-          <p className="max-w-md text-white/70">Lightning hoodies and graphic tees. Oversized fits, 400 GSM heavyweight fabric, made in Pune.</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/shop" className="btn !bg-white !text-black">Shop now</Link>
+          <p className="hero-in label !text-white/60">{site.tagline}</p>
+          <h1 style={{ animationDelay: ".1s" }} className="hero-in text-[clamp(2.6rem,6vw,5.5rem)] font-medium leading-[.98]">Crafted for the fearless.</h1>
+          <p style={{ animationDelay: ".25s" }} className="hero-in max-w-md text-white/70">Lightning hoodies and graphic tees. Oversized fits, 400 GSM heavyweight fabric, made in Pune.</p>
+          <div style={{ animationDelay: ".4s" }} className="hero-in flex flex-wrap gap-3">
+            <Link href="/shop" className="btn shine !bg-white !text-black">Shop now</Link>
             <Link href="/shop?category=hoodies" className="btn !border !border-white/60 !text-white">Hoodies</Link>
           </div>
         </div>
         <div className="relative order-1 aspect-[4/5] lg:order-2 lg:aspect-auto">
-          <Image src="/products/black-lightning.jpg" alt="Two models wearing the Black Lightning Hoodie" fill priority className="object-cover object-top" />
+          <div className="hero-zoom absolute inset-0"><Image src="/products/black-lightning.jpg" alt="Two models wearing the Black Lightning Hoodie" fill priority className="object-cover object-top" /></div>
         </div>
       </section>
 
@@ -31,12 +32,12 @@ export default function Home() {
       <section className="container-x mt-20" aria-labelledby="col-h">
         <h2 id="col-h" className="mb-5 text-3xl">Collections</h2>
         <ul className="grid gap-3 md:grid-cols-3">
-          {collections.map((c) => (
-            <li key={c.handle}>
+          {collections.map((c, i) => (
+            <li key={c.handle}><Reveal delay={i * 90} className="h-full">
               <Link href={`/collections?c=${c.handle}`} className="flex h-full flex-col justify-between gap-8 bg-panel p-6 transition hover:bg-char">
                 <span className="text-2xl">{c.title}</span>
                 <span className="text-sm text-silver">{c.blurb} →</span>
-              </Link>
+              </Link></Reveal>
             </li>
           ))}
         </ul>
@@ -68,7 +69,7 @@ function Row({ title, href, items, priority = false }: { title: string; href: st
         <Link href={href} className="label hover:text-bone">View all →</Link>
       </div>
       <div className="grid grid-cols-2 gap-x-3 gap-y-8 lg:grid-cols-4">
-        {items.map((p) => <ProductCard key={p.slug} product={p} priority={priority} />)}
+        {items.map((p, i) => <Reveal key={p.slug} delay={(i % 4) * 90}><ProductCard product={p} priority={priority} /></Reveal>)}
       </div>
     </section>
   );

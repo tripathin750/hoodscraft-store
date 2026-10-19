@@ -20,6 +20,9 @@ export function ProductClient({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [error, setError] = useState("");
   const sizeRef = useRef<HTMLFieldSetElement>(null);
+  const buyRef = useRef<HTMLDivElement>(null);
+  const [added, setAdded] = useState(false);
+  const [bar, setBar] = useState(false);
   const VIEWS = Math.max(product.images.length, 1);
   const hex = product.colours.find((c) => c.name === colour)?.hex;
   const sold = !inStock(product);
@@ -27,13 +30,18 @@ export function ProductClient({ product }: { product: Product }) {
   const wished = wishlist.includes(product.slug);
 
   useEffect(() => { pushRecent(product.slug); }, [product.slug, pushRecent]);
+  useEffect(() => {
+    const el = buyRef.current; if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([e]) => setBar(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(el); return () => io.disconnect();
+  }, [product.slug]);
 
   function validate() {
     if (!size) { setError("Please select a size."); sizeRef.current?.focus(); return false; }
     setError("");
     return true;
   }
-  const addToCart = () => validate() && add({ slug: product.slug, size, colour, qty });
+  const addToCart = () => { if (validate()) { add({ slug: product.slug, size, colour, qty }); setAdded(true); setTimeout(() => setAdded(false), 1800); } };
   const buyNow = () => { if (validate()) { add({ slug: product.slug, size, colour, qty }); router.push("/checkout"); } };
 
   const related = products.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, 4);
@@ -97,8 +105,8 @@ export function ProductClient({ product }: { product: Product }) {
             <p className={`text-sm ${sold ? "text-volt" : "text-silver"}`}>{sold ? "Sold out" : size ? (left <= 5 ? `Only ${left} left` : "In stock") : "Select a size to see availability"}</p>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <button className="btn btn-primary" disabled={sold} onClick={addToCart}>{sold ? "Sold out" : "Add to cart"}</button>
+          <div ref={buyRef} className="mt-6 grid gap-3 sm:grid-cols-2">
+            <button className="btn btn-primary" disabled={sold} onClick={addToCart}>{sold ? "Sold out" : added ? "Added ✓" : "Add to cart"}</button>
             <button className="btn btn-ghost" disabled={sold} onClick={buyNow}>Buy now</button>
           </div>
           <button onClick={() => toggleWish(product.slug)} aria-pressed={wished} className="label mt-4 min-h-11 hover:text-volt">{wished ? "♥ In wishlist" : "♡ Add to wishlist"}</button>
@@ -109,6 +117,11 @@ export function ProductClient({ product }: { product: Product }) {
             <Acc title="Shipping & returns"><p>Delivery across India. We confirm the delivery charge and timeline on WhatsApp when you order. See the <Link className="underline" href="/policies/shipping">shipping</Link> and <Link className="underline" href="/policies/returns">returns</Link> policies.</p></Acc>
           </div>
         </div>
+      </div>
+
+      <div aria-hidden={!bar} className={`fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-line bg-ink/95 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${bar ? "translate-y-0" : "translate-y-full"}`}>
+        <div className="min-w-0"><p className="truncate text-sm font-medium">{product.name}</p><p className="text-sm text-silver">{money(product.price)}</p></div>
+        <button tabIndex={bar ? 0 : -1} className="btn btn-primary shrink-0" disabled={sold} onClick={addToCart}>{sold ? "Sold out" : added ? "Added ✓" : "Add to cart"}</button>
       </div>
 
       {related.length > 0 && <Strip title="You may also like" items={related} />}

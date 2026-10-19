@@ -21,6 +21,12 @@ export function Header() {
   const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => { if (search) input.current?.focus(); }, [search]);
+  const [bump, setBump] = useState(false);
+  const prevCount = useRef(count);
+  useEffect(() => {
+    if (hydrated && count > prevCount.current) { setBump(true); const t = setTimeout(() => setBump(false), 600); prevCount.current = count; return () => clearTimeout(t); }
+    prevCount.current = count;
+  }, [count, hydrated]);
   useEffect(() => {
     document.body.style.overflow = menu ? "hidden" : "";
     const esc = (e: KeyboardEvent) => { if (e.key === "Escape") { setMenu(false); setSearch(false); } };
@@ -54,8 +60,8 @@ export function Header() {
             <Icon d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" />
           </Link>
           <button className="relative grid h-12 w-12 place-items-center hover:text-volt" aria-label={`Open cart, ${hydrated ? count : 0} items`} onClick={() => setDrawerOpen(true)}>
-            <Icon d="M5 8h14l-1 12H6L5 8zm4 0V6a3 3 0 0 1 6 0v2" />
-            {hydrated && count > 0 && <span className="absolute right-1 top-1 grid h-5 min-w-5 place-items-center rounded-full bg-volt px-1 text-[11px] font-bold text-ink">{count}</span>}
+            <span className={bump ? "bump" : ""}><Icon d="M5 8h14l-1 12H6L5 8zm4 0V6a3 3 0 0 1 6 0v2" /></span>
+            {hydrated && count > 0 && <span key={count} className="pop absolute right-1 top-1 grid h-5 min-w-5 place-items-center rounded-full bg-volt px-1 text-[11px] font-bold text-ink">{count}</span>}
           </button>
         </div>
       </div>

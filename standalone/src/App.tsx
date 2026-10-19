@@ -58,7 +58,7 @@ export default function App() {
       <FX /><Intro />
       
       <Header />
-      <main id="main"><Suspense fallback={<div className="min-h-[60svh]" aria-busy="true" />}><Route /></Suspense></main>
+      <main id="main" key={parse().path} className="page-in"><Suspense fallback={<div className="min-h-[60svh]" aria-busy="true" />}><Route /></Suspense></main>
       <Footer />
     </Providers>
   );
