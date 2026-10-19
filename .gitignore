@@ -45,3 +45,6 @@ _src.tgz
 _site_src.tgz
 standalone/node_modules
 standalone/dist
+
+# Local Netlify folder
+.netlify
