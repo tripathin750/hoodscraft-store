@@ -249,10 +249,10 @@ export const products: Product[] = rawProducts.map((p) => p.category === "hoodie
   ? { ...p, price: HOODIE_PRICE, compareAt: HOODIE_MRP }
   : {
     ...p, price: HIGH.has(p.slug) ? TEE_PRICE_HIGH : TEE_PRICE, compareAt: TEE_MRP,
-    fabric: "Premium heavyweight fabric", gsm: "240 GSM",
+    fabric: "100% cotton", gsm: "240 GSM",
     details: [
       ...p.details.filter((d) => /print/i.test(d)),
-      "240 GSM heavyweight fabric: dense, soft and structured, so it hangs well and doesn't feel thin",
+      "100% cotton, 240 GSM heavyweight fabric: dense, soft and breathable, so it hangs well and doesn't feel thin",
       "Premium-quality thread with neat, durable stitching built to last",
       "Oversized drop-shoulder fit for a relaxed, street-ready look",
       "Clean crew neckline and a roomy body",
