@@ -217,9 +217,9 @@ const rawProducts: Product[] = [
   {
     slug: "scorpion", name: 'Scorpion', category: "t-shirts", collection: "front",
     price: TEE_PRICE, colours: [C.Black], sizes: TEE_SIZES, stock: allStock(TEE_SIZES),
-    description: 'Silver and red scorpion across the shoulder.',
+    description: 'Our best seller. Silver and red scorpion across the shoulder on an oversized tee.',
     fabric: "[Fabric to be confirmed]", details: ["Oversized fit", "Front print", "[GSM and fabric to be confirmed]"],
-    isNew: false, popularity: 40, addedAt: "2025-01-01", images: [img('p26')], confirmedProduct: true,
+    isNew: false, popularity: 200, addedAt: "2025-12-01", images: [img('p26')], badge: "Best seller", confirmedProduct: true,
   },
   {
     slug: "tiger", name: 'Tiger', category: "t-shirts", collection: "back",

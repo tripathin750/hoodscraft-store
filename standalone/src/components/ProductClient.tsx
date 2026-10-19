@@ -7,6 +7,7 @@ import { ProductImage } from "./ProductImage";
 import { ProductCard } from "./ProductCard";
 import { useStore } from "./Providers";
 import { useRouter } from "next/navigation";
+import { Lightbox } from "./Lightbox";
 
 
 
@@ -23,6 +24,7 @@ export function ProductClient({ product }: { product: Product }) {
   const buyRef = useRef<HTMLDivElement>(null);
   const [added, setAdded] = useState(false);
   const [bar, setBar] = useState(false);
+  const [open, setOpen] = useState(false);
   const VIEWS = Math.max(product.images.length, 1);
   const hex = product.colours.find((c) => c.name === colour)?.hex;
   const sold = !inStock(product);
@@ -62,7 +64,7 @@ export function ProductClient({ product }: { product: Product }) {
           <div className="order-1 md:order-2">
             <div className="relative aspect-[4/5] cursor-zoom-in overflow-hidden bg-char"
               onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }}
-              onMouseLeave={() => setZoom(null)}>
+              onMouseLeave={() => setZoom(null)} onClick={() => product.images.length && setOpen(true)} role="button" aria-label="Open photo viewer to zoom">
               <div className="absolute inset-0 transition-transform duration-200" style={zoom ? { transform: "scale(1.8)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined}>
                 <ProductImage product={product} view={view} colourHex={hex} priority sizes="(min-width:1024px) 50vw, 100vw" />
               </div>
@@ -118,6 +120,8 @@ export function ProductClient({ product }: { product: Product }) {
           </div>
         </div>
       </div>
+
+      {open && <Lightbox images={product.images} start={Math.min(view, product.images.length - 1)} alt={product.name} onClose={() => setOpen(false)} />}
 
       <div aria-hidden={!bar} className={`fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-line bg-ink/95 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${bar ? "translate-y-0" : "translate-y-full"}`}>
         <div className="min-w-0"><p className="truncate text-sm font-medium">{product.name}</p><p className="text-sm text-silver">{money(product.price)}</p></div>

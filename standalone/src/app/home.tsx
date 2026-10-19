@@ -3,10 +3,13 @@ import Image from "next/image";
 import { products, collections, getProduct } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
+import { waUrl } from "@/lib/whatsapp";
+import { money } from "@/lib/format";
 import { site } from "@/lib/site";
 
 const latest = products.slice(0, 4);
-const featured = ["mentality", "hope", "scorpion", "shenlong"].map((s) => getProduct(s)!).filter(Boolean);
+const star = getProduct("scorpion")!;
+const featured = ["scorpion", "mentality", "hope", "shenlong"].map((s) => getProduct(s)!).filter(Boolean);
 
 export default function Home() {
   return (
@@ -25,6 +28,28 @@ export default function Home() {
         <div className="relative order-1 aspect-[4/5] lg:order-2 lg:aspect-auto">
           <div className="hero-zoom absolute inset-0"><Image src="/products/black-lightning.jpg" alt="Two models wearing the Black Lightning Hoodie" fill priority className="object-cover object-top" /></div>
         </div>
+      </section>
+
+      {/* BEST SELLER SPOTLIGHT */}
+      <section className="container-x mt-16" aria-labelledby="bs-h">
+        <Reveal>
+          <div className="grid overflow-hidden bg-panel md:grid-cols-2">
+            <Link href={`/products/${star.slug}`} className="relative block aspect-[4/5] bg-char md:aspect-auto md:min-h-[520px]" aria-label={`${star.name} tee`}>
+              <Image src={star.images[0]} alt="Scorpion oversized graphic tee, our best seller" fill className="object-cover object-top" />
+              <span className="shine absolute left-4 top-4 bg-black px-3 py-1.5 text-xs font-medium uppercase tracking-[.14em] text-white">Best seller</span>
+            </Link>
+            <div className="flex flex-col justify-center gap-5 p-6 md:p-12">
+              <p className="label">Most loved by our customers</p>
+              <h2 id="bs-h" className="text-5xl md:text-6xl">Scorpion</h2>
+              <p className="max-w-md text-silver">Silver and red scorpion across the shoulder on an oversized graphic tee. The one everyone keeps coming back for.</p>
+              <p className="flex items-baseline gap-3 text-2xl"><span className="font-semibold">{money(star.price)}</span>{star.compareAt && <s className="text-base text-silver">{money(star.compareAt)}</s>}{star.compareAt && <span className="text-sm font-medium text-crimson">-{Math.round((1 - star.price / star.compareAt) * 100)}%</span>}</p>
+              <div className="flex flex-wrap gap-3">
+                <Link href={`/products/${star.slug}`} className="btn btn-primary shine">Shop Scorpion</Link>
+                <a href={waUrl("Hi HOODSCRAFT! I want to order the Scorpion tee.")} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Order on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       <Row title="Latest" href="/shop" items={latest} priority />
