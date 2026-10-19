@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local build leftovers
+_src.tgz
+_site_src.tgz
+standalone/node_modules
+standalone/dist
